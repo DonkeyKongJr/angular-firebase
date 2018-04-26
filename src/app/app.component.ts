@@ -14,3 +14,4 @@ export class AppComponent {
     this.items = db.collection('items').valueChanges();
   }
 }
+  
