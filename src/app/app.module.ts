@@ -8,23 +8,31 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
+import { ROUTES } from './app.routes';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './services/auth-guard/auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule,
+    RouterModule.forRoot(
+      ROUTES,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
     AngularFireModule.initializeApp(environment.firebase, 'Angular-Firebase'),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

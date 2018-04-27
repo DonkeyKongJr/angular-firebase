@@ -1,7 +1,7 @@
-<button *ngIf="!authService.isLoggedIn" type="button" class="btn btn-block" (click)="signInWithGoogle()">
+<button *ngIf="!authService.isLoggedIn()" type="button" class="btn btn-block" (click)="signInWithGoogle()">
   <i class="fa fa-google" aria-hidden="true"></i>
      Login with Google
 </button>
-<button *ngIf="authService.isLoggedIn" type="button" class="btn btn-block" (click)="logout()">
+<button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-block" (click)="logout()">
      Logout
 </button>

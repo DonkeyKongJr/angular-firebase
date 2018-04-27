@@ -7,31 +7,46 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
   private user: Observable<firebase.User>;
+  private userDetails: firebase.User = null;
 
   constructor(
-    private _firebaseAuth: AngularFireAuth) {
-    this.user = _firebaseAuth.authState;
+    private router: Router,
+    private firebaseAuth: AngularFireAuth) {
+    this.user = firebaseAuth.authState;
+
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          console.log('userDetails:' + JSON.stringify(this.userDetails));
+        }
+        else {
+          this.userDetails = null;
+        }
+      }
+    );
   }
 
   public signInWithGoogle() {
-    this._firebaseAuth.auth.signInWithPopup(
+    this.firebaseAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
     ).then(result => {
-      this.user = result;
       console.log(`Sign In successful: ${JSON.stringify(result)}`);
+      this.router.navigate(['home'])
     })
       .catch(error => {
         console.log(`error with Google Sign in: ${error}`);
       });
   }
 
-  public get isLoggedIn(): boolean {
-    return this.user != null;
+  public isLoggedIn(): boolean {
+    return this.userDetails != null;
   }
 
   public logout() {
-    this.user = null;
-    this._firebaseAuth.auth.signOut()
-      .then((res) => console.log('logout successful'));
+    this.firebaseAuth.auth.signOut()
+      .then((res) => {
+        console.log('logout successful');
+      });
   }
 }
