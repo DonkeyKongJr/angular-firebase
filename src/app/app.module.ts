@@ -14,13 +14,18 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { UserProfileService } from './services/user/user-profile.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,8 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserProfileService
   ],
   bootstrap: [AppComponent]
 })
