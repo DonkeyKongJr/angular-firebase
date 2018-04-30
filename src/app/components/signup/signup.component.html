@@ -1,3 +1,12 @@
-<p>
-  signup works!
-</p>
+<div class="container">
+  <form class="form-signin" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <h1 class="form-signin-heading text-muted">Enjoy your stay!</h1>
+    <input name="firstname" type="text" class="form-control" placeholder="first name" required="" autofocus="" ngModel required #first="ngModel">
+    <input name="lastname" type="text" class="form-control" placeholder="last name" required="" autofocus="" ngModel required>
+    <input name="email" type="text" class="form-control" placeholder="Email address" required="" autofocus="" ngModel required>
+    <input name="password" type="password" class="form-control" placeholder="Password" required="" ngModel required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Register
+    </button>
+  </form>
+</div>

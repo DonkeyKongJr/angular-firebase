@@ -13,6 +13,7 @@ import { ROUTES } from './app.routes';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { SignupComponent } from './components/signup/signup.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SignupComponent } from './components/signup/signup.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(
       ROUTES,
       { enableTracing: true } // <-- debugging purposes only
